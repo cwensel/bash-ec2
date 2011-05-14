@@ -4,7 +4,7 @@ BASEDIR=`pwd`
 # openssl genrsa 1024 > pk-<id>.pem
 # openssl req -new -x509 -nodes -sha1 -days 730 -key pk.pem -out cert-<id>.pem
 
-[ -z "$CRED_HOME" ] && CRED_HOME=$BASEDIR/id
+[ -z "$AWS_CRED_HOME" ] && CRED_HOME=$BASEDIR/id
 [ -z "$REMOTE_ROOT" ] && REMOTE_ROOT="ubuntu"
 
 export PATH=$EC2_HOME/bin:$PATH
