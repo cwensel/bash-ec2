@@ -7,17 +7,21 @@ BASEDIR=`pwd`
 [ -z "$AWS_CRED_HOME" ] && CRED_HOME=$BASEDIR/id
 [ -z "$REMOTE_ROOT" ] && REMOTE_ROOT="ubuntu"
 
-export PATH=$EC2_HOME/bin:$PATH
-export EC2_PRIVATE_KEY=`find $CRED_HOME -name pk-*.pem`
-export EC2_CERT=`find $CRED_HOME -name cert-*.pem`
+[ ! -d $AWD_CRED_HOME ] && echo "Credential path does not exist: $AWS_CRED_HOME" && exit -1
 
-AWS_ACCESS_KEY_FILE=$CRED_HOME/accesskey
-AWS_SECRET_KEY_FILE=$CRED_HOME/secretkey
+echo "Using credentials: $AWS_CRED_HOME"
+
+export PATH=$EC2_HOME/bin:$PATH
+export EC2_PRIVATE_KEY=`find $AWS_CRED_HOME -name pk-*.pem`
+export EC2_CERT=`find $AWS_CRED_HOME -name cert-*.pem`
+
+AWS_ACCESS_KEY_FILE=$AWS_CRED_HOME/accesskey
+AWS_SECRET_KEY_FILE=$AWS_CRED_HOME/secretkey
 
 export AWS_ACCESS_KEY=`cat $AWS_ACCESS_KEY_FILE`
 export AWS_SECRET_KEY=`cat $AWS_SECRET_KEY_FILE`
 
-export EC2_SSH_KEY=`find $CRED_HOME -name id_*`
+export EC2_SSH_KEY=`find $AWS_CRED_HOME -name id_*`
 
 export EC2_SSH_OPTS="-i "$EC2_SSH_KEY" -o StrictHostKeyChecking=no -o ServerAliveInterval=30"
 
