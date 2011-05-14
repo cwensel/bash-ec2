@@ -17,17 +17,17 @@ You then must set the EC2_HOME environment variable to the client install root d
 
 Next a directory with all your AWS credentials must be created. For example
 
-  mkdir aws; cd aws
+    mkdir aws; cd aws
 
-  echo <accesskey> > accesskey
-  echo <secretkey> > secretkey
+    echo <accesskey> > accesskey
+    echo <secretkey> > secretkey
 
 Where <accesskey> and <secretkey> are your AWS credentials.
 
 You must also create and register signing keys
 
-  openssl genrsa 1024 > pk-<id>.pem
-  openssl req -new -x509 -nodes -sha1 -days 365 -key pk.pem -out cert-<id>.pem
+    openssl genrsa 1024 > pk-<id>.pem
+    openssl req -new -x509 -nodes -sha1 -days 365 -key pk.pem -out cert-<id>.pem
 
 Where <id> is some optional unique identifier.
 
@@ -37,11 +37,11 @@ Your private key must begin with "id_".
 Finally, you must source the setenv.sh file after setting the path
 to your credentials.
 
-  export AWS_CRED_HOME=~/aws
+    export AWS_CRED_HOME=~/aws
 
 then in the ec2-bash install directory
 
-  . setenv.sh
+    . setenv.sh
 
 Usage
 -----
