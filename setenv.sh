@@ -22,6 +22,7 @@ export AWS_ACCESS_KEY=`cat $AWS_ACCESS_KEY_FILE`
 export AWS_SECRET_KEY=`cat $AWS_SECRET_KEY_FILE`
 
 export EC2_SSH_KEY=`find $AWS_CRED_HOME -name 'id_*' ! -name '*.pub'`
+export EC2_SSH_KEY_NAME=${EC2_SSH_KEY/*id_}
 
 export EC2_SSH_OPTS="-i "$EC2_SSH_KEY" -o StrictHostKeyChecking=no -o ServerAliveInterval=30"
 
